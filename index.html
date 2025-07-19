@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI PPT Generator</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI PPT Generator</h1>
+        <form action="https://your-n8n-webhook-url" method="POST">
+            <!-- Basic Fields -->
+            <div class="form-group">
+                <label for="topic">Presentation Topic:</label>
+                <input type="text" id="topic" name="topic" required placeholder="e.g., Cancer Treatment">
+            </div>
+            
+            <div class="form-group">
+                <label for="slideCount">Number of Slides:</label>
+                <input type="number" id="slideCount" name="slideCount" min="3" max="40" value="15">
+            </div>
+            
+            <div class="form-group">
+                <label for="style">Choose Style:</label>
+                <select id="style" name="style">
+                    <option value="professional">Professional</option>
+                    <option value="creative">Creative</option>
+                    <option value="academic">Academic</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Choose Resources:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="resource1" name="resources" value="gscholar">
+                        <label for="resource1">Google Scholar</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="resource2" name="resources" value="sscholar">
+                        <label for="resource2">Semantic Scholar</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="resource3" name="resources" value="pmed">
+                        <label for="resource3">PubMed</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Advanced Settings Toggle -->
+            <button type="button" id="advancedToggle" class="advanced-toggle">
+                <span>Advanced Settings</span>
+                <svg class="toggle-icon" viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5z"/>
+                </svg>
+            </button>
+            
+            <!-- Advanced Settings Panel (initially hidden) -->
+            <div id="advancedSettings" class="advanced-settings">
+                <div class="form-group">
+                    <label for="orgname">Organised By (First Slide):</label>
+                    <input type="text" id="orgname" name="orgname" placeholder="Organization->e.g. Abbott">
+                </div>
+                
+                <div class="form-group">
+                    <label for="presenterName">Presented By (First Slide):</label>
+                    <input type="text" id="presenterName" name="presenterName" placeholder="Your name->e.g. Divya">
+                </div>
+                
+                <div class="form-group">
+                    <label for="presenterTitle">Presenter Title/Role:</label>
+                    <input type="text" id="presenterTitle" name="presenterTitle" placeholder="e.g. Regional Medical Advisor">
+                </div>
+                
+                <div class="form-group">
+                    <label>Final Slide Options:</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="includeReferences" name="finalSlideOptions" value="references" checked>
+                            <label for="includeReferences">Include References</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="includeThankYou" name="finalSlideOptions" value="thankyou" checked>
+                            <label for="includeThankYou">Ends With Thanks Note</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customClosing">Custom Closing Message:</label>
+                    <textarea id="customClosing" name="customClosing" rows="2" placeholder="e.g., Questions? Contact us at..."></textarea>
+                </div>
+            </div>
+            
+            <div class="submit-btn-container">
+                <button type="submit" class="submit-btn">Generate Presentation</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('advancedToggle').addEventListener('click', function() {
+            const settingsPanel = document.getElementById('advancedSettings');
+            const icon = this.querySelector('.toggle-icon');
+            
+            settingsPanel.classList.toggle('expanded');
+            icon.classList.toggle('expanded');
+            
+            // Update ARIA attributes for accessibility
+            const isExpanded = settingsPanel.classList.contains('expanded');
+            this.setAttribute('aria-expanded', isExpanded);
+            settingsPanel.setAttribute('aria-hidden', !isExpanded);
+        });
+    </script>
+</body>
+</html>

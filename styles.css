@@ -1,0 +1,295 @@
+/* ===== BASE STYLES ===== */
+:root {
+  /* Color Variables */
+  --primary: #caf063;
+  --secondary: #3f37c9;
+  --accent: #4895ef;
+  --dark: #1a1a2e;
+  --light: #f8f9fa;
+  
+  /* Sizing Variables */
+  --min-form-width: 300px;
+  --max-form-width: 500px;
+  --form-padding: clamp(1rem, 3vw, 2rem);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Changed from center for better scroll */
+  padding: 1rem;
+  background-color: var(--dark);
+  color: var(--light);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcThjMzBreDd4Yjkwa3hlNjZ1M3Vzb3pvZ3VxZm16ZWp2N3RkOG00diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3nWgXCpQpMUOrkoo/giphy.gif') center/cover no-repeat;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* ===== FORM CONTAINER ===== */
+.container {
+  width: clamp(var(--min-form-width), 95vw, var(--max-form-width));
+  background: rgba(26, 26, 46, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: clamp(12px, 2vw, 20px);
+  padding: var(--form-padding);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 2rem 0;
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* ===== FORM ELEMENTS ===== */
+h1 {
+  text-align: center;
+  margin-bottom: clamp(1rem, 3vw, 2rem);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.8rem, 3vw, 1.5rem);
+  min-height: 200px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-weight: 400;
+  color: var(--accent);
+  font-size: clamp(0.9rem, 3vw, 1rem);
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: clamp(0.6rem, 2vw, 0.8rem) clamp(0.8rem, 3vw, 1rem);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--light);
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.3);
+}
+
+/* ===== CHECKBOX GROUP ===== */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  width: clamp(16px, 4vw, 18px);
+  height: clamp(16px, 4vw, 18px);
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--accent);
+}
+
+input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.submit-btn-container {
+  position: sticky;
+  bottom: 0;
+  padding-top: 1rem;
+  margin-top: auto; /* Pushes to bottom */
+  background: linear-gradient(
+    to top,
+    rgba(26, 26, 46, 0.95) 60%,
+    rgba(26, 26, 46, 0) 100%
+  );
+}
+
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  padding: clamp(0.7rem, 2vw, 0.9rem);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== EXTREME MOBILE ADJUSTMENTS ===== */
+@media (max-width: 400px) {
+  body {
+    padding: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .container {
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+  
+  .submit-btn {
+    padding: 0.7rem;
+  }
+}
+
+@media (max-height: 600px) {
+  body {
+    align-items: flex-start;
+  }
+  
+  .container {
+    margin: 1rem auto;
+  }
+}
+
+/* [Previous CSS rules remain the same until the end] */
+
+/* ===== ADVANCED SETTINGS ===== */
+.advanced-toggle {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--accent);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin: 1rem 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.advanced-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.toggle-icon {
+    width: 20px;
+    height: 20px;
+    fill: var(--accent);
+    transition: transform 0.3s ease;
+}
+
+.toggle-icon.expanded {
+    transform: rotate(180deg);
+}
+
+.advanced-settings {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 8px 8px;
+    margin-top: -8px;
+}
+
+.advanced-settings.expanded {
+    max-height: 800px; /* Adjust based on content */
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: none;
+    margin-bottom: 1rem;
+}
+
+/* Textarea styling */
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--light);
+    font-size: 0.9rem;
+    resize: vertical;
+    min-height: 80px;
+    transition: all 0.3s ease;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.3);
+}
+
+/* Smooth transition for advanced settings */
+@media (max-width: 600px) {
+    .advanced-settings {
+        transition: max-height 0.4s ease-out;
+    }
+    
+    .advanced-settings.expanded {
+        padding: 0.8rem;
+    }
+}
