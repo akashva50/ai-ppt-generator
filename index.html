@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AI PPT Generator</title>
+    <title>AI PPTx Generator</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>AI PPT Generator</h1>
+        <div class="header-container">
+          <h1 class="simple-glow">Gen A.I - PPTx Generator</h1>
+          <p class="powered-by">~ Skysparq Tech.</p>
+        </div>
         <form action="https://your-n8n-webhook-url" method="POST">
             <!-- Basic Fields -->
             <div class="form-group">
                 <label for="topic">Presentation Topic:</label>
-                <input type="text" id="topic" name="topic" required placeholder="e.g., Cancer Treatment">
+                <input type="text" id="topic" name="topic" required placeholder="e.g. Cancer Treatment">
             </div>
             
             <div class="form-group">
@@ -59,14 +62,25 @@
             
             <!-- Advanced Settings Panel (initially hidden) -->
             <div id="advancedSettings" class="advanced-settings">
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="includeimages" name="images" value="images" checked>
+                    <label for="includeimages">Include Images</label>
+                    <input type="number" id="imgcount" name="imgcount" min="1" max="12" value="5">
+                </div>
+                <div class="form-group">
+                    <label for="Keywords">Keyword Titles (any):</label>
+                    <textarea id="Keywords" name="Keywords" rows="1" placeholder="e.g: diagnosis"
+                     >index/Agenda,diagnosis,lab findings,management,treatment,conclusion,take away</textarea>
+                </div>
                 <div class="form-group">
                     <label for="orgname">Organised By (First Slide):</label>
-                    <input type="text" id="orgname" name="orgname" placeholder="Organization->e.g. Abbott">
+                    <input type="text" id="orgname" name="orgname" placeholder="e.g. Abbott">
                 </div>
                 
                 <div class="form-group">
                     <label for="presenterName">Presented By (First Slide):</label>
-                    <input type="text" id="presenterName" name="presenterName" placeholder="Your name->e.g. Divya">
+                    <input type="text" id="presenterName" name="presenterName" placeholder="e.g. Divya">
                 </div>
                 
                 <div class="form-group">
@@ -88,10 +102,7 @@
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <label for="customClosing">Custom Closing Message:</label>
-                    <textarea id="customClosing" name="customClosing" rows="2" placeholder="e.g., Questions? Contact us at..."></textarea>
-                </div>
+
             </div>
             
             <div class="submit-btn-container">
